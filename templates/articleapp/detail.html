@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+
+{% block content %}
+    <div style="text-align: center; max-width: 500px; margin: 4rem auto">
+
+        <h1>
+            {{ target_article.title }}
+        </h1>
+        <h5>
+            {{ target_article.writer.profile.nickname }}
+        </h5>
+        <img style="width: 100%; border-radius: 1rem;"
+                src="{{ target_article.image.url }}" alt="">
+        <p>
+            {{ target_article.content | safe}}
+        </p>
+
+        {% if target_article.writer == user %}
+            <a href="{% url 'articleapp:update' pk=target_article.pk %}"
+               class = "btn btn-primary rounded-pill col-3">
+                Update Article
+            </a>
+            <a href="{% url 'articleapp:delete' pk=target_article.pk %}"
+            class = "btn btn-danger rounded-pill col-3">
+                <p>Delete Article</p>
+            </a>
+        {% endif %}
+    <hr>
+    {% include 'commentapp/create.html' with article=target_article %}
+
+    {% for comment in target_article.comment.all %}
+        {% include 'commentapp/detail.html' with comment=comment %}
+    {% endfor %}
+    </div>
+
+    <div style="text-align: left; padding: 4%; margin: 1rem 0; border-radius: 1rem;
+    border: 1px solid #bbb;">
+        <div>
+            <strong>
+                {{ comment.writer.profile.nickname }}
+            </strong>
+            &nbsp&nbsp&nbsp
+            {{ comment.created_at }}
+        </div>
+        <div style="margin: 1rem 0;">
+            {{ comment.content }}
+        </div>
+    </div>
+{% endblock %}

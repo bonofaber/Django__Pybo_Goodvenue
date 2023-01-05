@@ -1,4 +1,14 @@
-.idea
+
+.idea/httpRequests
+.idea/
 db.sqlite3
+venv/
+media/
+.env
+
+*.log
+*.pot
 *.pyc
 __pycache__
+
+

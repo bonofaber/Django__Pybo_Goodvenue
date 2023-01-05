@@ -1,24 +1,29 @@
 {% load static %}
 <!doctype html>
 <html lang="ko">
+{% include 'head.html' %}
+<!--  head.html로 대체
 <head>
-    <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- Bootstrap CSS -->
     <link rel="stylesheet" type="text/css" href="{% static 'bootstrap.min.css' %}">
-    <!-- goodvenue CSS -->
     <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
-    <title>어서오세요! GoodVenue입니다 ~</title>
-</head>
-<body>
+    <title>어소세요! MyVenue입니다 ~</title>
+</head>   -->
+
+
+<body> <!-- style="font-family: 'NanumSquareR'"> -->
+Hello Venues !
+{% include 'header.html' %}
+<hr>
 <!-- 네비게이션바 -->
 {% include "navbar.html" %}
 <!-- 기본 템플릿 안에 삽입될 내용 Start -->
 {% block content %}
 {% endblock %}
 <!-- 기본 템플릿 안에 삽입될 내용 End -->
-
+<hr>
+{% include 'footer.html' %}
 <!-- Bootstrap JS -->
 <script src="{% static 'bootstrap.min.js' %}"></script>
 

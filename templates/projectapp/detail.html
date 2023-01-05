@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+
+{% block content %}
+    <div style="text-align: center; max-width: 500px; margin: 4rem auto">
+
+        <p><h6 style = "display:inline">project.title:</h6><h1 style="display:inline">
+            {{ target_project.title }}</h1></p>
+        <p><h6 style = "display:inline">project.writer.profile.nickname:</h6><h3 style="display:inline">
+            {{ target_project.writer.profile.nickname }}
+        </h3>
+        <img style="width: 50%; border-radius: 1rem;"
+                src="{{ target_project.image.url }}" alt="">
+        <p>
+            content: {{ target_project.content }}
+        </p>
+
+       <p> writer: {{target_project.writer}}   |   user:  {{user }}</p>
+
+        {% if target_project.writer == user %}
+            <a href="{% url 'projectapp:update' pk=target_project.pk %}"
+               class = "btn btn-primary rounded-pill col-3">
+                Update Project
+            </a>
+            <a href="{% url 'projectapp:delete' pk=target_project.pk %}"
+            class = "btn btn-danger rounded-pill col-3">
+                <p>Delete Project</p>
+            </a>
+        {% endif %}
+    <hr>
+    <div class="text-center  mb-4"  >
+        {% if user.is_authenticated %}
+            {% if not subscription %}
+            <a href="{% url 'subscribeapp:subscribe' %}?project_pk={{ target_project.pk }}"
+                class="btn btn-primary rounded_pill px-4"> <!-- mb-3" style="border-radius: 20rem;"> -->
+                Subscribe
+            </a>
+              {% else %}
+              <a href="{% url 'subscribeapp:subscribe' %}?project_pk={{ target_project.pk }}"
+                    class="btn btn-dark rounded-pill px-4">
+                    UnSubscribe
+              </a>
+            {% endif %}
+        {% endif %}
+    </div>
+
+        <!--  아래 아티클 리스트 별도 구현
+    {% for article in target_project.article.all %}
+        {% include 'articleapp/detail.html' with article=article %}
+    {% endfor %}
+    </div>
+
+    <div style="text-align: left; padding: 4%; margin: 1rem 0; border-radius: 1rem;
+    border: 1px solid #bbb;">
+        <div>
+            <strong>
+                {{ article.writer.profile.nickname }}
+            </strong>
+            &nbsp&nbsp&nbsp
+            {{ article.created_at }}
+        </div>
+        <div style="margin: 1rem 0;">
+            {{ article.content }}
+        </div>
+    <hr>
+
+    <div>
+        {% include 'snippets/list_fragment.html' with article_list=object_list %}
+    </div>
+    </div>
+    -->
+{% endblock %}

@@ -1,0 +1,34 @@
+<div class="venue-header">
+    <div >
+        <h1 class="venue-logo">My Venue</h1>
+    </div>
+
+    <div>
+        <a href="{% url 'articleapp:list' %}">
+            <span>Articles</span>
+        </a>
+        <span>    |   </span>
+        <a href="{% url 'projectapp:list' %}">
+            <span>Projects</span>
+        </a>
+        <span>    |   </span>
+        <a href="{% url 'subscribeapp:list' %}">
+            <span>Subscription</span>
+        </a>
+        <span>nav1</span>
+        <span>nav2</span>
+    </div>
+
+    {% if not user.is_authenticated%}, request.path
+        <a href="{% url 'accountapp:login' %}?next={{ request.path }}">
+            <span>login</span>
+        </a>
+
+    {% else %}
+        <a href="{% url 'accountapp:detail' pk=user.pk %}">
+            <span>MyPage</span>
+        </a>
+    {% endif %}
+
+</div>
+

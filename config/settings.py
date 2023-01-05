@@ -9,8 +9,10 @@ https://docs.djangoproject.com/en/4.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
-
+import os
 from pathlib import Path
+
+from django.urls import reverse_lazy
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -34,11 +36,19 @@ INSTALLED_APPS = [
     'common.apps.CommonConfig',
     'goodvenue.apps.GoodvenueConfig',      # apps.py에 GoodvenueConfig 정의되어 있음
     'django.contrib.admin',
-    'django.contrib.auth',
+    'django.contrib.auth',   #admin 화면에서  '인증및 권한'
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'polls.apps.PollsConfig',  #polls app용 추가
+    'accountapp',  #pinterest용 app
+    'bootstrap4',
+    'profileapp',
+    'articleapp',
+    'commentapp',
+    'projectapp',
+    'subscribeapp',
 ]
 
 MIDDLEWARE = [
@@ -56,7 +66,8 @@ ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates'],
+        #'DIRS': [BASE_DIR / 'templates'],
+        'DIRS': [os.path.join(BASE_DIR / 'templates')],   #변경
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -77,11 +88,19 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
+        'ENGINE': 'django.db.backends.sqlite3', #SQLite는 Python에서 기본
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
+""" 
+다른 DB 쓸 경우
+'ENGINE':' 
+'django.db.backends.sqlite3',  또는
+'django.db.backends.postgresql',  또는
+'django.db.backends.mysql',  또는
+ 'django.db.backends.oracle'. 그외에 서드파티 백엔드 참조.
+"""
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
@@ -118,9 +137,15 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = 'static/'
-STATICFILES_DIRS = [
-    BASE_DIR / 'static',
-]
+
+STATICFILES_DIRS = [os.path.join('static/'),]
+
+#STATICFILES_DIRS = [
+#    BASE_DIR / 'static',
+#]
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # 배포시 생성 디렉토리
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
@@ -128,7 +153,22 @@ STATICFILES_DIRS = [
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # 로그인 성공후 이동하는 URL
-LOGIN_REDIRECT_URL = '/'
+#LOGIN_REDIRECT_URL = '/'
 
 # 로그아웃시 이동하는 URL
-LOGOUT_REDIRECT_URL = '/'
+#LOGOUT_REDIRECT_URL = '/'
+
+LOGIN_REDIRECT_URL = reverse_lazy('accountapp:hello_world')
+
+LOGOUT_REDIRECT_URL = reverse_lazy('accountapp:login')
+
+#static과 같이 media 파일들을 올릴 때 기본이 되는 MEDIA_URL과
+# media 파일들이 모이는 MEDIA_ROOT 위치를 설정
+MEDIA_URL = 'media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# 컴퓨터의 ip 허용값을 설정. *은 모든 사용자 허용
+ALLOWED_HOSTS = ['*']
+
+
+

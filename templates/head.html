@@ -1,0 +1,52 @@
+{% load static %}
+<head>
+    <meta name="viewport" content="width=device-width initial-scale=1, shrink-to-fit=no">
+
+   <!-- <meta charset="UTF-8"> -->
+    <title>Title: MyVenue입니다</title>
+    {# BOOTSTRAP #}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
+    {#    GOOGLE FONT#}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+
+    {#    DEFAULT CSS LINK #}
+    <link rel="stylesheet" type="text/css" href = "{% static 'base.css' %}">
+
+    {# GOOGLE MATERIAL ICONS #}
+    <link href="https://fonts.googleapis.com/css2?family=Material+Icons"
+          rel="stylesheet">
+
+    <style>
+        @font-face {
+            font-family: 'NanumSquareR';
+            src: local('NanumSqureR'),
+            url("{% static 'font/NanumSquareR.otf' %}") format('opentype');
+        }
+
+        @font-face {
+            font-family: 'NanumSquareEB';
+            src: local('NanumSqureEB'),
+            url("{% static 'fonts/NanumSquareEB.otf' %}") format("opentype");
+        }
+
+        @font-face {
+            font-family: 'NanumSquareB';
+            src: local('NanumSqureB'),
+            url("{% static 'fonts/NanumSquareB.otf' %}") format("opentype");
+        }
+        @font-face {
+            font-family: 'NanumSquareL';
+            src: local('NanumSqureL'),
+            url("{% static 'fonts/NanumSquareL.otf' %}") format("opentype");
+        }
+
+        @media screen and (max-width: 500px) {
+            html {font-size: 13px;}
+        }
+    </style>
+
+</head>

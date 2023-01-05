@@ -1,0 +1,7 @@
+body {
+    background: url("../../images/bg_small.jpg") no-repeat;
+}
+
+li a {
+    color: red;
+}
