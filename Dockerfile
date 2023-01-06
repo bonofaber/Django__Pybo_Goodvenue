@@ -8,8 +8,11 @@ RUN git clone https://github.com/bonofaber/Django_pybo_Goodvenue
 
 WORKDIR /home/Django_pybo_Goodvenue
 
+
+RUN pip freeze > requirements.txt
 RUN pip install -r requirements.txt
 
+RUN echo "SECRET_KEY=mykey" > .env
 
 RUN python manage.py migrate
 
