@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-2hxr4m7h)!aonr8kv=d37it1)b@g@z_bahddzi-wbnulnwbo!%
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['0.0.0.0']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -168,7 +168,7 @@ MEDIA_URL = 'media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # 컴퓨터의 ip 허용값을 설정. *은 모든 사용자 허용
-#ALLOWED_HOSTS = ['*']  #위와 중복
+ALLOWED_HOSTS = ['*']  #위와 중복
 
 
 

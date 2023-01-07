@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+      # web(Development) server.
+    web:
+        build: .
+        command: python manage.py runserver 0.0.0.0:8000
+        volumes:
+            - .:/app
+        ports:
+            - "8000:8000"
+
+
+  # Production server.
+  # For demo purposes. Don't use this in production for real.
+    prod:
+        build: .
+        volumes:
+            - .:/app
+        ports:
+            - "8000:8000"
+        #working_dir: /app
+        command: gunicorn myvenue.wsgi:application --bind 0.0.0.0:8000 --workers 3
+
+

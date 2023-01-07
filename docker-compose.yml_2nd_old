@@ -1,0 +1,13 @@
+version: '3.7'
+
+services:
+    web:
+        build: .
+        RUN echo "SECRET_KEY=django-insecure-$ioa*(%5%p#1&c(..._&d+x-+(-pdyo&z+" > .env
+        RUN python manage.py migrate
+        RUN echo yes | python manage.py collectstatic
+        command: python manage.py runserver 0.0.0.0:8000
+        volumes:
+            - .:/app
+        ports:
+            - "8000:8000"

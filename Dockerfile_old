@@ -1,0 +1,23 @@
+FROM python:3.9.0
+
+WORKDIR /home/
+
+#RUN echo "test_myvenue"
+
+RUN git clone https://github.com/bonofaber/Django_pybo_Goodvenue.git
+
+#WORKDIR /projects/myvenue/
+#set the working directory for the container
+WORKDIR /home/Django_pybo_Goodvenue/
+
+RUN pip freeze > requirements.txt
+RUN pip install -r requirements.txt
+
+RUN echo "SECRET_KEY=mykey" > .env
+
+RUN python manage.py migrate
+
+EXPOSE 8000
+
+#CMD ["bash", "-c", "python", "manage.py", "runserver", "0.0.0.0:8000"]
+CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
